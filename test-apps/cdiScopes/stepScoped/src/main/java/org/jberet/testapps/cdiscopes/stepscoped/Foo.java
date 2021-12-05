@@ -12,6 +12,11 @@ package org.jberet.testapps.cdiscopes.stepscoped;
 
 import jakarta.inject.Named;
 
+import jakarta.batch.api.BatchProperty;
+import jakarta.inject.Inject;
+
+import javax.enterprise.context.Dependent;
+import jakarta.batch.runtime.context.StepContext;
 import org.jberet.cdi.StepScoped;
 import org.jberet.testapps.cdiscopes.commons.StepNameHolder;
 
@@ -20,6 +25,20 @@ import org.jberet.testapps.cdiscopes.commons.StepNameHolder;
  * so any injected instance will have step scope as defined in {@code StepScope}.
  */
 @Named
-@StepScoped
+@Dependent
 public class Foo extends StepNameHolder {
+
+    
+        @Inject
+    @BatchProperty(name = "aa")
+    String aa;
+
+        
+    @Inject
+    StepContext stepCtx;
+
+        public void m1() {
+            System.out.println("SKSK: in Foo, aa = " + aa);
+                    System.out.println("step name = " + stepCtx.getStepName());
+        }
 }

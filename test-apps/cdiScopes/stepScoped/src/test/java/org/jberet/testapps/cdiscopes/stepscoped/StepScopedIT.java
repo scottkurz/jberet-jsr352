@@ -11,9 +11,11 @@
 package org.jberet.testapps.cdiscopes.stepscoped;
 
 import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.BatchRuntime;
 
 import org.jberet.testapps.common.AbstractIT;
 import org.junit.Assert;
+import java.util.Properties;
 import org.junit.Test;
 
 /**
@@ -35,7 +37,9 @@ public class StepScopedIT extends AbstractIT {
         //same job, different steps, injected Foo should be different
         //same step, different artifact, injected Foo (into both batchlet and step listener) should be the same
 
-        startJobAndWait(stepScopedTest);
+        Properties p = new Properties();
+        p.setProperty("aap2", "seventSK");
+        BatchRuntime.getJobOperator().start(stepScopedTest, p);
         Assert.assertEquals(BatchStatus.COMPLETED, jobExecution.getBatchStatus());
         Assert.assertEquals(stepName1Repeat3, stepExecutions.get(0).getExitStatus());
         Assert.assertEquals(stepName2, stepExecutions.get(1).getExitStatus());

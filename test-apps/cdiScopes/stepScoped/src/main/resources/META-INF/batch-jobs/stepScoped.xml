@@ -20,7 +20,18 @@
         </listeners>
         <batchlet ref="stepScopeBatchlet1"/>
     </step>
-    <step id="stepScoped.step2">
+    <step id="stepScoped.step2" next="s3">
         <batchlet ref="stepScopeBatchlet2"/>
+    </step>
+    <step id="s3">
+        <batchlet ref="s3">
+            <properties>
+                <property name="aa" value="#{jobParameters['aap2']}" />
+                <!--
+                <property name="aa" value="123"/>
+                -->
+            </properties>
+        </batchlet>
+ 
     </step>
 </job>
