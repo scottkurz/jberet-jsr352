@@ -10,13 +10,14 @@
 
 package org.jberet.testapps.cdiscopes.stepscoped;
 
-import jakarta.batch.runtime.BatchStatus;
-import jakarta.batch.runtime.BatchRuntime;
+import java.util.Properties;
 
 import org.jberet.testapps.common.AbstractIT;
 import org.junit.Assert;
-import java.util.Properties;
 import org.junit.Test;
+
+import jakarta.batch.runtime.BatchRuntime;
+import jakarta.batch.runtime.BatchStatus;
 
 /**
  * Tests for {@link org.jberet.cdi.StepScoped}.
