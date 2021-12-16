@@ -41,6 +41,7 @@ public class StepScopedIT extends AbstractIT {
         Properties p = new Properties();
         p.setProperty("aap2", "seventSK");
         BatchRuntime.getJobOperator().start(stepScopedTest, p);
+        Thread.sleep(10000);
         Assert.assertEquals(BatchStatus.COMPLETED, jobExecution.getBatchStatus());
         Assert.assertEquals(stepName1Repeat3, stepExecutions.get(0).getExitStatus());
         Assert.assertEquals(stepName2, stepExecutions.get(1).getExitStatus());
